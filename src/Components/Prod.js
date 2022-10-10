@@ -1,6 +1,6 @@
 import "./prod.css"
 
-export function Prod({produit}){
+export function Prod({produit,addpanier}){
     return(
         
             <div className="wrapper">
@@ -15,7 +15,7 @@ export function Prod({produit}){
     </div>
     <div className="product-price-btn">
       <p><span>{produit.price}</span>dt</p> <br/>
-      <button type="button">buy now</button>
+      <button type="button" onClick={()=>addpanier(produit)}>buy now</button>
     </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 import "./panier.css"
 import { ProdCart } from "./ProductCard"
 
-export function Panier() {
+export function Panier({panier}) {
     return (
         <div className="pannier">
            <div className="container">
@@ -23,7 +23,7 @@ export function Panier() {
         <div className="col">VAT</div>
         <div className="col">Total</div>
       </div>
-      <ProdCart/>
+      {panier.map((el)=><ProdCart prod={el}/>)}
       
       
       <div className="tf">

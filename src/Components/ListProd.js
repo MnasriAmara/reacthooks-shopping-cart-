@@ -1,10 +1,11 @@
 import { Prod } from "./Prod"
 
 
-function ListProd({productlist}){
+
+function ListProd({productlist,addpanier}){
     return(
         <div style={{display:"flex" , justifyContent:"space-around", flexWrap:"wrap" }}>
-          {productlist.map((e)=><Prod produit={e} key={e.id} /> )}
+          {productlist.map((e)=><Prod produit={e} key={e.id} addpanier={addpanier} /> )}
         </div>
     )
 }

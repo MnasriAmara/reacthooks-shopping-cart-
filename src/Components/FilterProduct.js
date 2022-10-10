@@ -1,15 +1,42 @@
 import "./filter.css"
+import{useState,useEffect} from 'react'
 
-function FilterProduct() {
+function FilterProduct({fbn,fbr,fbc}) {
     const category=["Elec", "Phone", "Clothes", "Info"]
+    const [rate, setrate] = useState({
+      one:false,two:false,three:false,four:false,five:false
+    })
+    const handlechangerate=(e)=>{
+setrate({...rate,[e.target.id]:e.target.value})
+    }
+    useEffect(() => {
+      if(rate.five){
+        fbr(5)
+      }else if(rate.four){
+        fbr(4)
+      }
+      else if(rate.three){
+        fbr(3)
+      }
+      else if(rate.two){
+        fbr(2)
+      }
+      else if(rate.one){
+        fbr(1)
+      }
+      
+    
+    }, [rate])
+    
     return(
         <div className="filerbody">
 {/* search bar by name */}
 <div className="search-container">
-  <input type="text" name="search" placeholder="Search..." className="search-input" />
+  <input type="text" name="search" placeholder="Search..." className="search-input" onChange={(e)=>fbn(e.target.value)}/>
   <a  className="search-btn" >
-    <i className="fas fa-search" />      
+    <i className="fas fa-search"/>      
   </a>
+
 </div>
 {/* search filter rate */}
 <div>
@@ -26,31 +53,31 @@ function FilterProduct() {
     </svg>
   </div>
   <div className="star-container">
-    <input type="radio" name="star" id="five" />
+    <input type="radio" name="star" id="five" onChange={handlechangerate}/>
     <label htmlFor="five">
       <svg className="star">
         <use xlinkHref="#star" />
       </svg>
     </label>
-    <input type="radio" name="star" id="four" />
+    <input type="radio" name="star" id="four" onChange={handlechangerate}/>
     <label htmlFor="four">
       <svg className="star">
         <use xlinkHref="#star" />
       </svg>
     </label>
-    <input type="radio" name="star" id="three" />
+    <input type="radio" name="star" id="three" onChange={handlechangerate}/>
     <label htmlFor="three">
       <svg className="star">
         <use xlinkHref="#star" />
       </svg>
     </label>
-    <input type="radio" name="star" id="two" />
+    <input type="radio" name="star" id="two" onChange={handlechangerate}/>
     <label htmlFor="two">
       <svg className="star">
         <use xlinkHref="#star" />
       </svg>
     </label>
-    <input type="radio" name="star" id="one" />
+    <input type="radio" name="star" id="one"onChange={handlechangerate}/>
     <label htmlFor="one">
       <svg className="star">
         <use xlinkHref="#star" />
@@ -77,11 +104,11 @@ function FilterProduct() {
       </div>
       <div id="options">
         
-        {category.map(el=><div className="option">
+        {category.map((el,i)=><div key={i}className="option">
           {/* <input className="s-c top" type="radio" name="platform" defaultValue="freecodecamp" /> */}
           {/* <input className="s-c bottom" type="radio" name="platform" defaultValue="freecodecamp" /> */}
           {/* <i className="fab fa-free-code-camp" /> */}
-          <span className="label">{el}</span>
+          <span className="label" onClick={()=>fbc(el)}>{el}</span>
           {/* <span className="opt-val">{el}</span> */}
         </div>
         )}
